@@ -132,20 +132,25 @@ declare module 'tweener.tweener' {
 	export const outinelastic: TweenFunc;
 	export const outinbounce: TweenFunc;
 
+	/** @returns The created timer id */
 	export function tween(
-		tween_function: AnyTweenFunc,
+		easing_function: AnyTweenFunc,
 		from: number,
 		to: number,
 		time: number,
 		callback: (value: number, is_final_call: boolean) => void,
-		dt?: number,
+		update_delta_time?: number,
 	): hash;
 
+	/** @returns The result of easing */
 	export function ease(
-		tween_function: AnyTweenFunc,
+		easing_function: AnyTweenFunc,
 		from: number,
 		to: number,
 		time: number,
 		time_elapsed: number,
 	): number;
+
+	/** @returns true if the tween was active, false if the tween was already cancelled / complete */
+	export function cancel(id: hash): boolean;
 }
